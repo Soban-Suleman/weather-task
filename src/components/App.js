@@ -1,10 +1,10 @@
+import { Card, Col, Image, Layout } from "antd";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../App.css";
-import { Layout, Card, Col, Image } from "antd";
 import sun from "../assets/images/sun.png";
-import WeatherCard from "./WeatherCard";
-import axios from "axios";
-const { Content, Footer } = Layout;
+import Container from "./Container";
+const { Footer } = Layout;
 
 const App = () => {
   const [data, setData] = useState();
@@ -59,25 +59,11 @@ const App = () => {
 
   return (
     <div>
-      <Layout className="layout">
-        <h1 className="heading">Weekly Weather Data</h1>
-        <Content style={{ padding: "0 50px" }}>
-          <div className="site-layout-content">
-            <WeatherCard renderedCard={renderedDailyDataCard} />
-          </div>
-        </Content>
-      </Layout>
-      <Layout className="layout">
-        <h1 className="heading">Today's Weather Data</h1>
-        <Content style={{ padding: "0 50px" }}>
-          <div className="site-layout-content">
-            <WeatherCard renderedCard={renderedHourlyDataCard} />
-          </div>
-        </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Data Fetched Using Openweather API
-        </Footer>
-      </Layout>
+      <Container title={"Weekly weather Data"} card={renderedDailyDataCard} />
+      <Container title={"Today's weather Data"} card={renderedHourlyDataCard} />
+      <Footer style={{ textAlign: "center" }}>
+        Data Fetched Using Openweather API
+      </Footer>
     </div>
   );
 };
